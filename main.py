@@ -4,7 +4,7 @@ import hashlib
 
 
 def show_menu():
-    print("\n🏦 Welcome to SBI Bank - Banking Management System")
+    print("\nWelcome to SBI Bank - Banking Management System")
     print('''
 1. Create New Account  
 2. Deposit Money  
@@ -29,7 +29,7 @@ class Bankaccount:
             try:
                 choice = int(input("Enter your choice (1–7): "))
             except ValueError:
-                print("❌ Please enter a valid number.")
+                print("Please enter a valid number.")
                 continue
 
             match choice:
@@ -47,7 +47,7 @@ class Bankaccount:
                     while True:
                         account_type= input("Enter Account Type (Savings/Current): ")
                         if account_type not in ['Savings','Current']:
-                            print("❌Invalid account type")
+                            print("Invalid account type")
                             continue
                         with open(f"{account_number}.txt", "a") as f:
                             f.write(f"\nAccount type: {account_type}")
@@ -56,7 +56,7 @@ class Bankaccount:
                     while True:
                         pin= input("Set 4-digit PIN: ")
                         if not (pin.isdigit() and len(pin)==4):
-                            print("❌PIN must be a 4-digit number")
+                            print("PIN must be a 4-digit number")
                             continue
                         hashed_pin = hash_pin(pin)
                         with open(f"{account_number}.txt", "a") as f:
@@ -68,13 +68,13 @@ class Bankaccount:
                         if initial_deposit.isdigit() and int(initial_deposit) > 0:
                             with open(f"{account_number}.txt", "a") as f:
                                 f.write(f"\nBalance: {initial_deposit}")
-                            print("\n✅Account created successfully")
+                            print("\nAccount created successfully")
                             print(f"Your Account number is: {account_number}")
                             with open(f"{account_number}.txt", "a") as f:
                                 f.write(f"\nAccount number: {account_number}")
                             break
                         else:
-                            print("❌Invalid deposit amount")
+                            print("Invalid deposit amount")
                             continue
 
 
@@ -102,7 +102,7 @@ class Bankaccount:
 
                         with open(f"{num}.txt","w") as f2:
                             f2.writelines(lines)
-                        print(f"✅ Rs {amount} deposit successfully")
+                        print(f"Rs {amount} deposit successfully")
                         break
 
 
@@ -123,7 +123,7 @@ class Bankaccount:
                                 print("Please enter positive amount")
                                 continue
                             if amount > previous_balance:
-                                print("❌ Insufficient Balance")
+                                print("Insufficient Balance")
                                 continue
                             break
 
@@ -135,12 +135,12 @@ class Bankaccount:
                                 lines[3]=f"Balance: {previous_balance}\n"
                                 break
                             else:
-                                print("❌Invalid PIN")
+                                print("Invalid PIN")
                                 continue
 
                         with open(f"{num}.txt","w") as f5:
                             f5.writelines(lines)
-                            print(f"✅ Rs {amount} Withdrawl successfully")
+                            print(f"Rs {amount} Withdrawl successfully")
                         break
 
 
@@ -169,7 +169,7 @@ class Bankaccount:
                             print("Please enter positive amount")
                             continue
                         if amount > previous_balance:
-                            print("❌ Insufficient Balance")
+                            print("Insufficient Balance")
                             continue
                         break
 
@@ -181,7 +181,7 @@ class Bankaccount:
                             lines[3]=f"Balance: {previous_balance}\n"
                             break
                         else:
-                            print("❌Invalid PIN")
+                            print("Invalid PIN")
                             continue
 
                     with open(f"{from_account}.txt","w") as f5:
@@ -198,7 +198,7 @@ class Bankaccount:
                     with open(f"{to_account}.txt","w") as f8:
                         f8.writelines(lines1)
 
-                        print(f"✅ Rs {amount} Transferred successfully to {to_account}")
+                        print(f"Rs {amount} Transferred successfully to {to_account}")
 
 
                 case 5:
@@ -217,14 +217,14 @@ class Bankaccount:
                     while True:
                         pin = input("Enter PIN: ")
                         if hash_pin(pin) != previous_pin:
-                            print("❌Invalid PIN")
+                            print("Invalid PIN")
                             continue
                         break
 
                     previous_balance3=int(lines[3].split(":")[1])
                     print(f"Balance: Rs{previous_balance3}")
 
-                    print("✅ Balanced checked successfully")
+                    print("Balanced checked successfully")
 
 
                 case 6:
@@ -242,19 +242,19 @@ class Bankaccount:
                     while True:
                         pin = input("Enter PIN: ")
                         if hash_pin(pin) != previous_pin:
-                            print("❌Invalid PIN")
+                            print("Invalid PIN")
                             continue
                         break
 
                     os.remove(f"{num}.txt")
-                    print("✅ Account Closed successfully")
+                    print("Account Closed successfully")
 
 
                 case 7:
                     print('''Thank you for banking with SBI Bank \nHave a great day.''')
                     break
                 case _:
-                    print("❌ Invalid choice")
+                    print("Invalid choice")
                     continue
 
 
